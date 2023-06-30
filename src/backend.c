@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <time.h>
 
+int score = 0;
+
 /*
  * Removes from the list or returns false
  */
@@ -31,7 +33,8 @@ enum Status move_snake(Board* board, enum Direction dir) {
   // Create a new beginning. Check boundaries.
   PointList* beginning = next_move(board, dir);
   if (beginning == NULL) {
-    return FAILURE;
+    printf("YOU DIED!!!! Your score was: %d ",score); 
+	return FAILURE;
   }
 
   // If we've gone backwards, don't do anything
@@ -43,7 +46,8 @@ enum Status move_snake(Board* board, enum Direction dir) {
 
   // Check for collisions
   if (list_contains(beginning, board->snake)) {
-    return FAILURE;
+   	printf("YOU DIED!!! Your score was: %d ",score); 
+	return FAILURE;
   }
 
   // Check for food
@@ -54,6 +58,7 @@ enum Status move_snake(Board* board, enum Direction dir) {
     remove_from_list(beginning, &(board->foods));
     add_new_food(board);
 
+	score += 1;
     return SUCCESS;
   }
 

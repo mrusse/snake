@@ -3,6 +3,7 @@
 #include <ncurses.h>
 
 int main() {
+  printf("\n");
   initscr();
   cbreak();
   noecho();
@@ -32,5 +33,6 @@ int main() {
   }
   endwin();
 
+  printf("\n\n");
   return 0;
 }
